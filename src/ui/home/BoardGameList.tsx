@@ -1,4 +1,4 @@
-import { fetchBoardGames } from "@/app/api/service/boardGame.service";
+import { fetchBoardGames } from "@/service/boardGame.service";
 import { Key } from "react";
 
 const BoardGameList = async () => {
@@ -6,9 +6,7 @@ const BoardGameList = async () => {
   return (
     <ul>
       {boardGames?.map((boardGame) => (
-        <li key={boardGame._id as Key}>
-          {boardGame.name}
-          </li>
+        <li key={boardGame._id as unknown as Key}>{boardGame.name}</li>
       ))}
     </ul>
   );

@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
-export interface BoardGame extends mongoose.Document {
+export interface BoardGameDocument extends mongoose.Document {
+  _id: ObjectId;
   name: string;
   description: string;
   play_time: number;
@@ -12,7 +13,7 @@ export interface BoardGame extends mongoose.Document {
   publisher: string;
 }
 
-const BoardGameSchema = new mongoose.Schema<BoardGame>(
+const BoardGameSchema = new mongoose.Schema<BoardGameDocument>(
   {
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -28,4 +29,4 @@ const BoardGameSchema = new mongoose.Schema<BoardGame>(
 );
 
 export default mongoose.models.BoardGames ||
-  mongoose.model<BoardGame>("BoardGames", BoardGameSchema);
+  mongoose.model<BoardGameDocument>("BoardGames", BoardGameSchema);
