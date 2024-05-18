@@ -1,3 +1,4 @@
+import BoardGameList from "@/ui/home/BoardGameList";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <header>
         <h1>Board Game Library</h1>
+        <BoardGameList />
       </header>
     </main>
   );
