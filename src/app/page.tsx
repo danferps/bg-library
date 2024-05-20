@@ -1,3 +1,4 @@
+import { fetchBoardGames } from "@/service/boardGame.service";
 import BoardGameList from "@/ui/home/BoardGameList";
 import { Metadata } from "next";
 
@@ -10,12 +11,14 @@ export const metadata: Metadata = {
     "Project to create and customize your virtual Board game library, add your games and share them with other people",
 };
 
-export default function Home() {
+export default async function Home() {
+  const boardGames = await fetchBoardGames();
+
   return (
     <main>
       <header>
         <h1>Board Game Library</h1>
-        <BoardGameList />
+        <BoardGameList boardGames={boardGames} />
       </header>
     </main>
   );

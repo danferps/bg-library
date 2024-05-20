@@ -1,14 +1,26 @@
-import { fetchBoardGames } from "@/app/api/service/boardGame.service";
+"use client";
+
+import { BoardGameDocument } from "@/app/api/models/BoardGames";
+import { fetchBoardGames } from "@/service/boardGame.service";
+import { useQuery } from "@tanstack/react-query";
 import { Key } from "react";
 
-const BoardGameList = async () => {
-  const boardGames = await fetchBoardGames();
+type BoardGameListProps = {
+  boardGames: BoardGameDocument[];
+};
+
+const BoardGameList = ({ boardGames }: BoardGameListProps) => {
+  const { data } = useQuery({
+    queryKey: ["boardGames"],
+    queryFn: fetchBoardGames,
+    initialData: boardGames,
+    enabled: false
+  });
+
   return (
     <ul>
-      {boardGames?.map((boardGame) => (
-        <li key={boardGame._id as Key}>
-          {boardGame.name}
-          </li>
+      {data?.map((boardGame) => (
+        <li key={boardGame._id as unknown as Key}>{boardGame.name}</li>
       ))}
     </ul>
   );
