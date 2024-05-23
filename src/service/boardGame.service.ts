@@ -8,6 +8,7 @@ export const fetchBoardGames = async (): Promise<BoardGameDocument[]> => {
     boardGames {
       _id
       name
+      image
     }
   }`;
 

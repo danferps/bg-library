@@ -2,13 +2,10 @@ import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { ApolloServer } from "@apollo/server";
 import { NextRequest } from "next/server";
 import typeDefs from "./board-games/schema";
-import dbConnect from "../connectDB";
 import resolvers from "./board-games/resolver";
 import BoardGameDataSource from "./board-games/datasource";
 import BoardGames from "../models/BoardGames";
 import { ApoloAppContext, DataSources } from "./context";
-
-dbConnect();
 
 const createDataSources = (): DataSources => ({
   boardGames: new BoardGameDataSource({ modelOrCollection: BoardGames }),
