@@ -3,6 +3,7 @@
 import { BoardGameDocument } from "@/app/api/models/BoardGames";
 import { fetchBoardGames } from "@/service/boardGame.service";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import { Key } from "react";
 
 type BoardGameListProps = {
@@ -14,14 +15,23 @@ const BoardGameList = ({ boardGames }: BoardGameListProps) => {
     queryKey: ["boardGames"],
     queryFn: fetchBoardGames,
     initialData: boardGames,
-    enabled: false
   });
 
   return (
     <ul>
-      {data?.map((boardGame) => (
-        <li key={boardGame._id as unknown as Key}>{boardGame.name}</li>
-      ))}
+      {data?.map((boardGame) => {
+        return (
+          <li key={boardGame._id as unknown as Key}>
+            <h2>{boardGame.name}</h2>
+            <Image
+              src={boardGame.image}
+              alt={`Image of ${boardGame.name}`}
+              width={121}
+              height={150}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 };

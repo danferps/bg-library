@@ -2,6 +2,7 @@ const boardGameSchema = `#graphql
   type BoardGame {
     _id: ID!
     name: String!
+    image: String
     description: String!
     play_time: Int!
     age_rating: Int!
